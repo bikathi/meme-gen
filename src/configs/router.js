@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/Home.vue";
+import PickAnImage from "../pages/StepOne.vue";
 
 const router = createRouter({
 	history: createWebHistory(),
@@ -8,6 +9,11 @@ const router = createRouter({
 			path: "/",
 			component: Home,
 			name: "index",
+		},
+		{
+			path: "/pick-an-image",
+			component: PickAnImage,
+			name: "step-one",
 		},
 	],
 });
