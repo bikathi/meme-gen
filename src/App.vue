@@ -1,5 +1,7 @@
 <script setup></script>
 
 <template>
-	<router-view/>
+	<main>
+		<h1>Weclome to memetastic</h1>
+	</main>
 </template>
