@@ -1,4 +1,22 @@
-<script setup></script>
+<script setup>
+	import { ref } from "vue";
+
+	const imagePreviewlink = ref("");
+	function handleImageUpload(event) {
+		const file = event.target.files[0];
+
+		// Check if the file is an image
+		if (!file.type.startsWith("image/")) {
+			return;
+		}
+
+		const reader = new FileReader();
+		reader.onload = (event) => {
+			imagePreviewlink.value = event.target.result;
+		};
+		reader.readAsDataURL(file);
+	}
+</script>
 
 <template>
 	<nav
@@ -18,8 +36,49 @@
 						>Step 1: Choose an Image</span
 					>
 				</div>
-				<div class="collapse-content">
-					<p>hello</p>
+				<div class="collapse-content flex flex-col items-center">
+					<form
+						action="#"
+						class="w-fit my-2 flex flex-col items-center">
+						<h1 class="font-roboto text-xl">
+							Upload/ Change Your Meme Photo
+						</h1>
+						<label
+							for="dropzone-file"
+							class="mt-2 flex bg-base-300 hover:bg-base-300/60 flex-col items-center justify-center border-2 border-gray-300 border-dashed cursor-pointer h-72 w-96 rounded-md">
+							<div
+								class="flex flex-col items-center justify-center pt-5 pb-6">
+								<svg
+									aria-hidden="true"
+									class="w-10 h-10 mb-3 text-gray-400"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg">
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+								</svg>
+								<p
+									class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+									<span class="font-semibold"
+										>Click to upload</span
+									>
+								</p>
+							</div>
+							<input
+								id="dropzone-file"
+								type="file"
+								class="hidden"
+								@change="handleImageUpload" />
+						</label>
+					</form>
+					<img
+						:src="imagePreviewlink"
+						alt="image-preview"
+						class="font-poppins" />
 				</div>
 			</div>
 			<div class="collapse bg-base-200">
