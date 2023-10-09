@@ -3,6 +3,10 @@
 	import UploadIcon from "./components/UploadIcon.vue";
 
 	const imagePreviewlink = ref("");
+	const memeText = ref(
+		"This is the text that appears on your meme. Click on it to edit to your own text. Color, size and fonts can be edited later in step 3"
+	);
+
 	function handleImageUpload(event) {
 		const file = event.target.files[0];
 
@@ -41,7 +45,7 @@
 					<form
 						action="#"
 						class="w-fit my-2 flex flex-col items-center">
-						<h1 class="font-roboto text-xl">
+						<h1 class="font-roboto text-xl text-secondary">
 							Upload/ Change Your Meme Photo
 						</h1>
 						<label
@@ -80,7 +84,11 @@
 					>
 				</div>
 				<div class="collapse-content">
-					<p>hello</p>
+					<p
+						class="outline-none text-xl font-roboto text-center text-secondary"
+						contenteditable="true">
+						{{ memeText }}
+					</p>
 				</div>
 			</div>
 			<div class="collapse bg-base-200">
